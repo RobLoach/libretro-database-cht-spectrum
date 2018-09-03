@@ -1,6 +1,10 @@
 [submodule "libretro-database"]
 	path = libretro-database
 	url = https://github.com/libretro/libretro-database.git
+	branch = master
+	ignore = dirty
 [submodule "all-tipshop-pokes"]
 	path = all-tipshop-pokes
 	url = https://github.com/eklipse2009/all-tipshop-pokes.git
+	branch = master
+	ignore = dirty

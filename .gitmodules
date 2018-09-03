@@ -1,3 +1,6 @@
 [submodule "libretro-database"]
 	path = libretro-database
 	url = https://github.com/libretro/libretro-database.git
+[submodule "all-tipshop-pokes"]
+	path = all-tipshop-pokes
+	url = https://github.com/eklipse2009/all-tipshop-pokes.git

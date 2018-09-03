@@ -1,0 +1,14 @@
+{
+  "name": "libretro-database-cht-spectrum",
+  "version": "0.0.1",
+  "description": "libretro cheats for Sinclair - ZX Spectrum +3",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "keywords": [
+    "libretro-database"
+  ],
+  "author": "Rob Loach (https://robloach.net)",
+  "license": "MIT"
+}

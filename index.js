@@ -6,6 +6,9 @@ const destinationDirectory = 'libretro-database/cht/Sinclair - ZX Spectrum +3'
 
 // Clear out the Sinclair directory.
 rimraf.sync(destinationDirectory + '/*')
+if (!fs.existsSync(destinationDirectory)) {
+    fs.mkdirSync(destinationDirectory);
+}
 
 // Find all the available .pok files.
 glob("all-tipshop-pokes/**/*.pok", function (err, files) {

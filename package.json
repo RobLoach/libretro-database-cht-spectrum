@@ -4,7 +4,10 @@
   "description": "libretro cheats for Sinclair - ZX Spectrum +3",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "pretest": "git submodule update --init",
+    "test": "node index.js",
+    "presubmodules": "git pull --recurse-submodules",
+    "submodules": "git submodule update --remote --recursive"
   },
   "keywords": [
     "libretro-database"

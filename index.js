@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 const rimraf = require('rimraf')
+const replaceString = require('replace-string')
+const sanitizeFilename = require('sanitize-filename')
 const destinationDirectory = 'libretro-database/cht/Sinclair - ZX Spectrum +3'
 
 // Clear out the Sinclair directory.
@@ -26,7 +28,7 @@ glob("all-tipshop-pokes/**/*.pok", function (err, files) {
 function processPokFile(inputFile) {
 	let contents = fs.readFileSync(inputFile, 'utf8')
 	let basename = path.basename(inputFile, '.pok')
-	let destination = path.join(destinationDirectory, basename + '.cht')
+	let destination = path.join(destinationDirectory, sanitizeFilename(basename + '.cht'))
 	let cheats = parsePokFile(contents)
 	let chtContents = pokToCht(cheats)
 	if (!chtContents) {
@@ -71,6 +73,10 @@ function parsePokFile(fileContents) {
 	return cheats
 }
 
+function sanitize(val) {
+	return replaceString(val, '"', '')
+}
+
 /**
  * From a pok object, build the cht contents.
  */
@@ -82,8 +88,8 @@ function pokToCht(pok) {
 	let output = 'cheats = ' + pok.length + '\n\n'
 	for (let i in pok) {
 		let cheat = pok[i]
-		output += `cheat${i}_desc = "${cheat.name}"\n`
-		output += `cheat${i}_code = "${cheat.codes.join('\\n')}"\n`
+		output += `cheat${i}_desc = "${sanitize(cheat.name)}"\n`
+		output += `cheat${i}_code = "${sanitize(cheat.codes.join('\\n'))}"\n`
 		output += `cheat${i}_enable = false\n\n`
 	}
 

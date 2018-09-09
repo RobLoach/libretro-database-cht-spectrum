@@ -2,6 +2,8 @@
 
 ZX-Spectrum cheats for [libretro-database](https://github.com/libretro/libretro-database) from [all-tipshop-pokes](https://github.com/eklipse2009/all-tipshop-pokes).
 
+This parses the .pok files from [.pok format](http://www.worldofspectrum.org/POKformat.txt) into RetroArch .cht files in libretro-database.
+
 ## Requirements
 
 1. Node.js

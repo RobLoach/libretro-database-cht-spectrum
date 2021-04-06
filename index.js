@@ -88,7 +88,7 @@ function pokToCht(pok) {
 	let output = 'cheats = ' + pok.length + '\n\n'
 	for (let i in pok) {
 		let cheat = pok[i]
-		output += `cheat${i}_desc = "${sanitize(cheat.name)}"\n`
+		output += `cheat${i}_desc = "${sanitize(cheat.name).replace(/[^\x20-\x7E]/g, '')}"\n`
 		output += `cheat${i}_code = "${sanitize(cheat.codes.join('\\n'))}"\n`
 		output += `cheat${i}_enable = false\n\n`
 	}

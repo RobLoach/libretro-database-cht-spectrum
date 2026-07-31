@@ -1,26 +1,19 @@
 const fs = require('fs')
 const path = require('path')
-const glob = require('glob')
-const rimraf = require('rimraf')
+const { globSync } = require('glob')
+const { rimrafSync } = require('rimraf')
 const replaceString = require('replace-string')
 const sanitizeFilename = require('sanitize-filename')
 const destinationDirectory = 'libretro-database/cht/Sinclair - ZX Spectrum +3'
 
 // Clear out the Sinclair directory.
-rimraf.sync(destinationDirectory + '/*')
-if (!fs.existsSync(destinationDirectory)) {
-    fs.mkdirSync(destinationDirectory);
-}
+rimrafSync(destinationDirectory)
+fs.mkdirSync(destinationDirectory, { recursive: true })
 
 // Find all the available .pok files.
-glob("all-tipshop-pokes/**/*.pok", function (err, files) {
-	if (err) {
-		throw err
-	}
-	for (let file of files) {
-		processPokFile(file)
-	}
-})
+for (let file of globSync("all-tipshop-pokes/**/*.pok")) {
+	processPokFile(file)
+}
 
 /**
  * Process the given .pok file into a .cht file.
